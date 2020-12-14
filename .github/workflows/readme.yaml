@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     container: bioconductor/bioconductor_docker:devel
     steps:
+      - uses: actions/checkout@v1    
       - name: Generate README.md
         run: |
           PATH=$PATH:$HOME/bin/ Rscript -e 'getwd(); dir(); dir("..")'
