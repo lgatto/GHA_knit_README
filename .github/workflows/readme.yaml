@@ -6,8 +6,17 @@ jobs:
     runs-on: ubuntu-latest
     container: bioconductor/bioconductor_docker:devel
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v1
+      - name: Checkout PR 🛎️
+        uses: actions/checkout@v2
+        if: github.event_name == 'pull_request'
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Checkout push 🛎️          
+        uses: actions/checkout@v2          
+        if: github.event_name == 'push'
+        with:
+          fetch-depth: 0
       - name: Generate README.md
         run: |
           PATH=$PATH:$HOME/bin/ Rscript -e 'knitr::knit("README.Rmd")'
