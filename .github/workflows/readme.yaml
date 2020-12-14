@@ -1,3 +1,4 @@
+name: knit-readme
 on: [push]
 
 jobs:
@@ -5,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     container: bioconductor/bioconductor_docker:devel
     steps:
-      - uses: actions/checkout@v1    
+      - uses: actions/checkout@v2
       - name: Generate README.md
         run: |
           PATH=$PATH:$HOME/bin/ Rscript -e 'knitr::knit("README.Rmd")'
