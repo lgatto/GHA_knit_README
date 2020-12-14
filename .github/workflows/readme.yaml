@@ -1,0 +1,21 @@
+on: [push]
+
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    container: bioconductor/bioconductor_docker:devel
+    steps:
+      - name: Generate README.md
+        run: |
+          PATH=$PATH:$HOME/bin/ Rscript -e 'getwd(); dir()'
+        working-directory: .
+      - name: Install deploy dependencies
+        run: |
+          apt-get update
+          apt-get -y install rsync
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: master
+          FOLDER: .
