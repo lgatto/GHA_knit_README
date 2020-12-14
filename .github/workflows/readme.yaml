@@ -7,8 +7,8 @@ jobs:
     steps:
       - name: Generate README.md
         run: |
-          PATH=$PATH:$HOME/bin/ Rscript -e 'getwd(); dir()'
-          working-directory: .
+          PATH=$PATH:$HOME/bin/ Rscript -e 'getwd(); dir(); dir("..")'
+        working-directory: .
       - name: Install deploy dependencies
         run: |
           apt-get update
