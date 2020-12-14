@@ -13,7 +13,8 @@ dispaly `[2]` in the `README.md` output file.
 
 ### Notes
 
-- The newly knit `README.md` file will have to get pull locally.
+- The newly knit `README.md` file will have to get pull locally every
+  time.
 
 ### TODO
 
