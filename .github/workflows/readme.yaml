@@ -6,29 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     container: bioconductor/bioconductor_docker:devel
     steps:
-      - name: Checkout PR 🛎️
-        uses: actions/checkout@v2
-        if: github.event_name == 'pull_request'
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: Checkout push 🛎️          
-        uses: actions/checkout@v2          
-        if: github.event_name == 'push'
-        with:
-          fetch-depth: 0
-      - name: Generate README.md
+      - name: Render README
+        run: Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document")'
+      - name: commit README
         run: |
-          PATH=$PATH:$HOME/bin/ Rscript -e 'knitr::knit("README.Rmd")'
-        working-directory: .
-      - name: Install deploy dependencies
-        run: |
-          apt-get update
-          apt-get -y install rsync
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: master
-          FOLDER: .
-          COMMIT_MESSAGE: New README.md file
+          git config --global user.email "render-action@github.com"
+          git config --global user.name "Render action"
+          git add README.md
+          git commit -m "Re-build README.md" || echo "No changes to commit"
+          git push origin master || echo "No changes to commit"
