@@ -5,7 +5,7 @@ up-to-date `README.md` file.
 
 
 As an example, the following code chunk evaluates `1 + 1` and will
-dispaly `[2]` in the `README.md` output file.
+dispaly `[1] 2` in the `README.md` output file.
 
 
 ```r
@@ -18,7 +18,8 @@ dispaly `[2]` in the `README.md` output file.
 
 ### Notes
 
-- The newly knit `README.md` file will have to get pull locally.
+- The newly knit `README.md` file will have to get pull locally every
+  time.
 
 ### TODO
 
