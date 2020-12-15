@@ -7,7 +7,10 @@ jobs:
     container: bioconductor/bioconductor_docker:devel
     steps:
       - name: Knit README.Rmd
-        run: Rscript -e 'knitr::knit("README.Rmd")'
+        run: |
+          pwd
+          ls
+          ## Rscript -e 'knitr::knit("README.Rmd")'
         working-directory: .
       - name: commit README.md
         run: |
