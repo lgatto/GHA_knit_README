@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: Knit README.Rmd
         run: Rscript -e 'knitr::knit("README.Rmd")'
+        working-directory: .
       - name: commit README.md
         run: |
           git config --global user.email "render-action@github.com"
