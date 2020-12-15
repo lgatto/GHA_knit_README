@@ -1,4 +1,4 @@
-name: knit-readme
+name: knit-commit-readme
 on: [push]
 
 jobs:
@@ -6,9 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     container: bioconductor/bioconductor_docker:devel
     steps:
-      - name: Render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document")'
-      - name: commit README
+      - name: Knit README.Rmd
+        run: Rscript -e 'knitr::knit("README.Rmd")'
+      - name: commit README.md
         run: |
           git config --global user.email "render-action@github.com"
           git config --global user.name "Render action"
