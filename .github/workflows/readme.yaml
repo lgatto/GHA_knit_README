@@ -9,13 +9,13 @@ jobs:
       - name: Knit README.Rmd
         run: |
           pwd
-          ls
+          ls ..
           ## Rscript -e 'knitr::knit("README.Rmd")'
         working-directory: .
-      - name: commit README.md
-        run: |
-          git config --global user.email "render-action@github.com"
-          git config --global user.name "Render action"
-          git add README.md
-          git commit -m "Re-build README.md" || echo "No changes to commit"
-          git push origin master || echo "No changes to commit"
+      ## - name: commit README.md
+      ##   run: |
+      ##     git config --global user.email "render-action@github.com"
+      ##     git config --global user.name "Render action"
+      ##     git add README.md
+      ##     git commit -m "Re-build README.md" || echo "No changes to commit"
+      ##     git push origin master || echo "No changes to commit"
